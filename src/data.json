@@ -1,0 +1,114 @@
+{
+  "nodes": [
+    { "id": 1, "name": "SH-Web-01", "type": "服务器", "ip": "192.168.1.10", "group": "Web集群", "tags": ["生产", "核心"], "status": "online", "probeStatus": "normal", "bandwidth": 1000, "location": "上海" },
+    { "id": 2, "name": "SH-DB-01", "type": "服务器", "ip": "192.168.1.20", "group": "数据库集群", "tags": ["生产", "核心"], "status": "online", "probeStatus": "normal", "bandwidth": 2000, "location": "上海" },
+    { "id": 3, "name": "BJ-App-01", "type": "服务器", "ip": "10.0.1.10", "group": "应用集群", "tags": ["生产"], "status": "online", "probeStatus": "warning", "bandwidth": 500, "location": "北京" },
+    { "id": 4, "name": "BJ-SW-Core", "type": "交换机", "ip": "10.0.1.1", "group": "核心网络", "tags": ["核心", "网络"], "status": "online", "probeStatus": "normal", "bandwidth": 10000, "location": "北京" },
+    { "id": 5, "name": "GZ-CDN-01", "type": "服务器", "ip": "172.16.1.10", "group": "CDN集群", "tags": ["CDN", "边缘"], "status": "online", "probeStatus": "normal", "bandwidth": 5000, "location": "广州" },
+    { "id": 6, "name": "GZ-Cache-01", "type": "服务器", "ip": "172.16.1.20", "group": "缓存集群", "tags": ["缓存", "核心"], "status": "offline", "probeStatus": "error", "bandwidth": 1000, "location": "广州" },
+    { "id": 7, "name": "SH-Monitor-01", "type": "服务器", "ip": "192.168.1.100", "group": "监控集群", "tags": ["监控"], "status": "online", "probeStatus": "normal", "bandwidth": 200, "location": "上海" },
+    { "id": 8, "name": "BJ-FW-01", "type": "防火墙", "ip": "10.0.1.2", "group": "安全设备", "tags": ["安全", "核心"], "status": "online", "probeStatus": "normal", "bandwidth": 10000, "location": "北京" }
+  ],
+  "trafficData": {
+    "timeLabels": ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+    "upload": [120,95,80,65,55,70,150,380,520,680,750,820,790,710,680,720,690,580,420,350,280,210,160,130],
+    "download": [200,150,120,100,90,110,280,620,850,1100,1250,1380,1300,1150,1080,1180,1120,950,700,580,450,340,260,210]
+  },
+  "historyData": {
+    "daily": {
+      "labels": ["2026-06-26","2026-06-27","2026-06-28","2026-06-29","2026-06-30","2026-07-01","2026-07-02"],
+      "bandwidthUsage": [65,72,68,75,82,78,71],
+      "peakValues": [850,920,880,960,1100,1020,890],
+      "avgUsage": [58,64,60,67,74,70,63]
+    },
+    "weekly": {
+      "labels": ["第22周","第23周","第24周","第25周","第26周","第27周"],
+      "bandwidthUsage": [62,68,71,74,70,67],
+      "peakValues": [800,880,920,980,950,890],
+      "avgUsage": [55,60,63,66,62,59]
+    },
+    "monthly": {
+      "labels": ["2026-01","2026-02","2026-03","2026-04","2026-05","2026-06"],
+      "bandwidthUsage": [58,62,65,70,73,69],
+      "peakValues": [750,820,860,920,980,900],
+      "avgUsage": [50,54,57,62,65,61]
+    },
+    "p95Value": 920,
+    "totalTraffic": 12580,
+    "peakBandwidth": 1380,
+    "avgBandwidthUsage": 63.5
+  },
+  "alerts": [
+    { "id": 1, "nodeId": 3, "nodeName": "BJ-App-01", "level": "critical", "type": "带宽突增", "message": "下行带宽超过阈值 90%，当前值 95%", "triggerTime": "2026-07-02 14:23:15", "status": "pending", "assignee": "", "threshold": 90, "currentValue": 95 },
+    { "id": 2, "nodeId": 6, "nodeName": "GZ-Cache-01", "level": "warning", "type": "节点离线", "message": "节点探针心跳超时，节点已离线", "triggerTime": "2026-07-02 13:45:00", "status": "processing", "assignee": "熊舒", "threshold": null, "currentValue": null },
+    { "id": 3, "nodeId": 1, "nodeName": "SH-Web-01", "level": "info", "type": "流量峰值", "message": "95计费峰值接近合同带宽 95%", "triggerTime": "2026-07-02 10:15:30", "status": "confirmed", "assignee": "张丽", "threshold": 950, "currentValue": 920 },
+    { "id": 4, "nodeId": 2, "nodeName": "SH-DB-01", "level": "warning", "type": "上行异常", "message": "上行带宽持续高于80%达15分钟", "triggerTime": "2026-07-02 09:30:00", "status": "archived", "assignee": "黄锐", "threshold": 80, "currentValue": 85 },
+    { "id": 5, "nodeId": 5, "nodeName": "GZ-CDN-01", "level": "critical", "type": "带宽突增", "message": "CDN回源流量异常激增300%", "triggerTime": "2026-07-01 22:10:45", "status": "false_positive", "assignee": "沈清", "threshold": 200, "currentValue": 600 },
+    { "id": 6, "nodeId": 4, "nodeName": "BJ-SW-Core", "level": "info", "type": "流量峰值", "message": "核心交换机流量达到日常峰值", "triggerTime": "2026-07-01 18:00:00", "status": "archived", "assignee": "蓬沛柔", "threshold": 8000, "currentValue": 8200 },
+    { "id": 7, "nodeId": 7, "nodeName": "SH-Monitor-01", "level": "warning", "type": "探针异常", "message": "探针采集延迟超过5秒", "triggerTime": "2026-07-01 15:20:00", "status": "confirmed", "assignee": "广晓芬", "threshold": 5, "currentValue": 8 },
+    { "id": 8, "nodeId": 8, "nodeName": "BJ-FW-01", "level": "critical", "type": "安全告警", "message": "检测到异常流量模式，疑似DDoS攻击", "triggerTime": "2026-07-01 03:45:20", "status": "processing", "assignee": "李斯", "threshold": 5000, "currentValue": 8500 }
+  ],
+  "alertStats": {
+    "total": 156,
+    "pending": 12,
+    "processing": 8,
+    "confirmed": 45,
+    "archived": 78,
+    "falsePositive": 13,
+    "critical": 28,
+    "warning": 65,
+    "info": 63,
+    "avgResponseTime": "12分钟",
+    "resolutionRate": "92%"
+  },
+  "systemConfig": {
+    "collectionInterval": 60,
+    "alertThresholds": {
+      "static": { "upload": 80, "download": 90, "p95": 95 },
+      "dynamic": { "enabled": true, "baseline": "7d", "multiplier": 1.5, "aiModel": "lstm" }
+    },
+    "notificationChannels": [
+      { "id": 1, "type": "email", "name": "邮件通知", "enabled": true, "config": { "smtp": "smtp.company.com", "port": 465 } },
+      { "id": 2, "type": "dingtalk", "name": "钉钉通知", "enabled": true, "config": { "webhook": "https://oapi.dingtalk.com/robot/send?access_token=***" } },
+      { "id": 3, "type": "wechat", "name": "企业微信通知", "enabled": false, "config": { "webhook": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=***" } }
+    ],
+    "alertConvergence": {
+      "enabled": true,
+      "windowSeconds": 300,
+      "maxAlerts": 5,
+      "deduplication": true
+    },
+    "users": [
+      { "id": 1, "name": "熊舒", "role": "admin", "email": "xiongshu@company.com", "phone": "138****1001" },
+      { "id": 2, "name": "张丽", "role": "operator", "email": "zhangli@company.com", "phone": "138****1002" },
+      { "id": 3, "name": "黄锐", "role": "operator", "email": "huangrui@company.com", "phone": "138****1003" },
+      { "id": 4, "name": "沈清", "role": "viewer", "email": "shenqing@company.com", "phone": "138****1004" },
+      { "id": 5, "name": "蓬沛柔", "role": "operator", "email": "pengpeirou@company.com", "phone": "138****1005" },
+      { "id": 6, "name": "广晓芬", "role": "operator", "email": "guangxiaofen@company.com", "phone": "138****1006" },
+      { "id": 7, "name": "田露", "role": "viewer", "email": "tianlu@company.com", "phone": "138****1007" },
+      { "id": 8, "name": "唐雨桐", "role": "viewer", "email": "tangyutong@company.com", "phone": "138****1008" },
+      { "id": 9, "name": "李斯", "role": "operator", "email": "lisi@company.com", "phone": "138****1009" },
+      { "id": 10, "name": "顾小云", "role": "admin", "email": "guxiaoyun@company.com", "phone": "138****1010" }
+    ]
+  },
+  "topologyLinks": [
+    { "source": 4, "target": 3, "status": "normal" },
+    { "source": 4, "target": 8, "status": "normal" },
+    { "source": 1, "target": 2, "status": "normal" },
+    { "source": 1, "target": 7, "status": "normal" },
+    { "source": 5, "target": 6, "status": "error" },
+    { "source": 3, "target": 5, "status": "normal" }
+  ],
+  "realtimeMetrics": {
+    "totalNodes": 8,
+    "onlineNodes": 7,
+    "offlineNodes": 1,
+    "totalBandwidth": 20800,
+    "currentUpload": 680,
+    "currentDownload": 1150,
+    "alertCount": 3,
+    "cpuUsage": 45,
+    "memoryUsage": 62,
+    "diskUsage": 58
+  }
+}
